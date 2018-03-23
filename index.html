@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .left {
+            float: left;
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .right {
+            overflow: hidden;
+        }
+
+        .center {
+            float: right;
+        }
+
+        .left2 {
+            float: left;
+            width: 100px;
+        }
+
+        .right-fix {
+            float: right;
+            width: 100%;
+            margin-left: -100px;
+        }
+
+        .right2 {
+            margin-left: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <%= htmlWebpackPlugin.options.date %>
+    </h3>
+    <h3>
+        <%= htmlWebpackPlugin.options.name %>
+    </h3>
+
+    <ul>
+
+        <% for ( var key in htmlWebpackPlugin ){ %>
+            <% if ( key == 'files' ) { %>
+                <h3>files</h3>
+                <% for( var f in htmlWebpackPlugin[key] ){ %>
+                    <li>
+                        <%= f %>,
+                            <%= htmlWebpackPlugin[key][f] %>
+                    </li>
+                    <% if ( f == 'chunks') { %>
+                        <p>
+                            <%= JSON.stringify( htmlWebpackPlugin[key][f] ) %>
+                        </p>
+                        <% } %>
+                            <% } %>
+                                <% } else { %>
+                                    <h3>options</h3>
+                                    <% for( var f in htmlWebpackPlugin[key] ){ %>
+                                        <li>
+                                            <%= f %>,
+                                                <%= htmlWebpackPlugin[key][f] %>
+                                        </li>
+                                        <% } %>
+                                            <% } %>
+                                                <% } %>
+
+
+    </ul>
+
+
+    <div class="parent">
+        <div class="left">
+            <p>left</p>
+            <p>left</p>
+        </div>
+        <div class="right">
+            <p>right</p>
+            <p>right</p>
+        </div>
+    </div>
+
+    <div class="parent2 clearfix">
+        <div class="left2">
+            <p>left</p>
+            <p>left</p>
+        </div>
+        <div class="right-fix">
+
+            <div class="right2">
+                <p>right</p>
+                <p>right</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="parent">
+        <div class="left">
+            <p>left</p>
+            <p>left</p>
+        </div>
+        <div class="center">
+            <p>center</p>
+            <p>center</p>
+
+        </div>
+        <div class="right">
+            <p>right</p>
+            <p>right</p>
+        </div>
+    </div>
+
+        <h4>
+                <%= htmlWebpackPlugin.files %>
+        </h4>
+
+
+        <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+</body>
+
+</html>
